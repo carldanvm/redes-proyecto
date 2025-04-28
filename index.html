@@ -1,1 +1,329 @@
-<h1>Redes</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redes - Calculadora Materiales</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script defer src="calculos.js"></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('input').forEach(i => i.classList.add('form-control'));
+      document.querySelectorAll('select').forEach(s => s.classList.add('form-select'));
+      document.querySelectorAll('section').forEach(sec => sec.classList.add('mb-4'));
+      document.getElementById('calcular').classList.add('btn','btn-primary');
+      document.getElementById('resultado').classList.add('mt-3');
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    .bg-cheap {
+      background-color: #d4edda!important;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <h1 class="text-center my-4">Redes - Calculadora de Materiales</h1>
+  <form id="calculator" class="container py-5 bg-white p-4 rounded shadow-sm">
+    <h2 class="text-center mb-4 display-5">Sección Materiales</h2>
+    <section id="price-table" class="mb-4">
+      <h3 class="h5">Tabla de precios <small class="text-muted">(incluye nacionalización para USA)</small></h3>
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead class="table-light">
+            <tr><th>Material</th><th>Venezuela</th><th>USA</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Tabique con cajetín</td><td>87.15</td><td class="bg-cheap">85.15</td></tr>
+            <tr><td>Tabique sin cajetín</td><td>60</td><td class="bg-cheap">58.5</td></tr>
+            <tr><td>Conduit 2"</td><td class="bg-cheap">30</td><td>31.2</td></tr>
+            <tr><td>Gabinete IT</td><td>8100</td><td class="bg-cheap">7800</td></tr>
+            <tr><td>Carrete UTP Cat5e 333.33m</td><td>33.03</td><td class="bg-cheap">31.811</td></tr>
+            <tr><td>Cable Cat5e 10m con conectores</td><td class="bg-cheap">4.69</td><td>4.875</td></tr>
+            <tr><td>Bolsa conectores RJ45</td><td class="bg-cheap">75</td><td>78</td></tr>
+            <tr><td>Puerta</td><td class="bg-cheap">150</td><td>161.005</td></tr>
+            <tr><td>Cajetines externos</td><td>27</td><td class="bg-cheap">24.999</td></tr>
+            <tr><td>Carrete telefónico 333.33m</td><td>39.76</td><td class="bg-cheap">38.285</td></tr>
+            <tr><td>Bolsa conectores telefónicos (100u)</td><td class="bg-cheap">31.25</td><td>32.5</td></tr>
+            <tr><td>Cable telefónico 10m con conectores</td><td class="bg-cheap">2.19</td><td>2.275</td></tr>
+          </tbody>
+        </table>
+        <div class="form-text mb-2"><span class="bg-success bg-opacity-25 px-2 py-1 rounded">Verde</span> = Mas barato</div>
+      </div>
+    </section>
+    <section id="tabiques">
+      <h2>1. Tabiques</h2>
+      <div class="row g-2 align-items-end">
+        <div class="col-md-6">
+          <label class="form-label">Tabique con cajetín (Venezuela):
+            <input type="number" id="tabique-ven-cajetin" min="0" class="form-control" placeholder="Cantidad">
+          </label>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Tabique con cajetín (USA):
+            <input type="number" id="tabique-usa-cajetin" min="0" class="form-control" placeholder="Cantidad">
+          </label>
+        </div>
+      </div>
+      <div class="row g-2 align-items-end mt-2">
+        <div class="col-md-6">
+          <label class="form-label">Tabique sin cajetín (Venezuela):
+            <input type="number" id="tabique-ven-sin-cajetin" min="0" class="form-control" placeholder="Cantidad">
+          </label>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Tabique sin cajetín (USA):
+            <input type="number" id="tabique-usa-sin-cajetin" min="0" class="form-control" placeholder="Cantidad">
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section id="conduits">
+      <h2>2. Conduits</h2>
+      <div class="row g-2 align-items-end">
+        <div class="col-md-6">
+          <label class="form-label">Metros conduit 2" (Venezuela):
+            <input type="number" id="metros-conduit-2-ven" min="0" step="0.01" class="form-control" placeholder="Cantidad de metros">
+          </label>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Metros conduit 2" (USA):
+            <input type="number" id="metros-conduit-2-usa" min="0" step="0.01" class="form-control" placeholder="Cantidad de metros">
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section id="gabinete">
+      <h2>3. Gabinete</h2>
+      <div class="row g-2 align-items-end">
+        <div class="col-md-6">
+          <label class="form-label">Gabinete IT (Venezuela):
+            <input type="number" id="gabinete-ven" min="0" class="form-control" placeholder="Cantidad">
+          </label>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Gabinete IT (USA):
+            <input type="number" id="gabinete-usa" min="0" class="form-control" placeholder="Cantidad">
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section id="puertas">
+      <h2>4. Puertas</h2>
+      <div class="row g-2 align-items-end">
+        <div class="col-md-6">
+          <label class="form-label">Puertas (Venezuela):
+            <input type="number" id="puertas-ven" min="0" class="form-control" placeholder="Cantidad">
+          </label>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Puertas (USA):
+            <input type="number" id="puertas-usa" min="0" class="form-control" placeholder="Cantidad">
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section id="cajetines-externos">
+      <h2>5. Cajetines Externos</h2>
+      <div class="row g-2 align-items-end">
+        <div class="col-md-6">
+          <label class="form-label">Cajetines externos (Venezuela):
+            <input type="number" id="cajetines-externos-ven" min="0" class="form-control" placeholder="Cantidad">
+          </label>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Cajetines externos (USA):
+            <input type="number" id="cajetines-externos-usa" min="0" class="form-control" placeholder="Cantidad">
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section id="bolsa-conectores-rj45">
+      <h2>6. Bolsa de conectores RJ45</h2>
+      <div class="row g-2 align-items-end">
+        <div class="col-md-6">
+          <label class="form-label">Bolsa conectores RJ45 (Venezuela):
+            <input type="number" id="rj45-ven" min="0" class="form-control" placeholder="Cantidad">
+          </label>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Bolsa conectores RJ45 (USA):
+            <input type="number" id="rj45-usa" min="0" class="form-control" placeholder="Cantidad">
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section id="cat5e-conectores">
+      <h2>7. Cable Cat5e 10m con conectores</h2>
+      <div class="row g-2 align-items-end">
+        <div class="col-md-6">
+          <label class="form-label">Cable Cat5e 10m con conectores (Venezuela):
+            <input type="number" id="cat5e-conectores-ven" min="0" class="form-control" placeholder="Cantidad">
+          </label>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Cable Cat5e 10m con conectores (USA):
+            <input type="number" id="cat5e-conectores-usa" min="0" class="form-control" placeholder="Cantidad">
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section id="carrete-cat5e-sin-conectores">
+      <h2>8. Carrete Cat5e sin conectores (333.33m)</h2>
+      <div class="row g-2 align-items-end">
+        <div class="col-md-6">
+          <label class="form-label">Carrete Cat5e sin conectores (Venezuela, m):
+            <input type="number" id="carrete-cat5e-sin-ven" min="0" step="0.01" class="form-control" placeholder="Cantidad de metros">
+          </label>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Carrete Cat5e sin conectores (USA, m):
+            <input type="number" id="carrete-cat5e-sin-usa" min="0" step="0.01" class="form-control" placeholder="Cantidad de metros">
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section id="carrete-telefonico">
+      <h2>9. Carrete de cable telefónico (333.33m)</h2>
+      <div class="row g-2 align-items-end">
+        <div class="col-md-6">
+          <label class="form-label">Carrete telefónico (Venezuela, m):
+            <input type="number" id="carrete-tele-ven" min="0" step="0.01" class="form-control" placeholder="Cantidad de metros">
+          </label>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Carrete telefónico (USA, m):
+            <input type="number" id="carrete-tele-usa" min="0" step="0.01" class="form-control" placeholder="Cantidad de metros">
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section id="cable-telefonico-conectores">
+      <h2>10. Cable telefónico 10m con conectores</h2>
+      <div class="row g-2 align-items-end">
+        <div class="col-md-6">
+          <label class="form-label">Cable telefónico 10m con conectores (Venezuela):
+            <input type="number" id="cable-tele-conectores-ven" min="0" class="form-control" placeholder="Cantidad">
+          </label>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Cable telefónico 10m con conectores (USA):
+            <input type="number" id="cable-tele-conectores-usa" min="0" class="form-control" placeholder="Cantidad">
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section id="bolsa-conectores-telefonicos">
+      <h2>11. Bolsa de conectores telefónicos (100 unidades)</h2>
+      <div class="row g-2 align-items-end">
+        <div class="col-md-6">
+          <label class="form-label">Bolsa conectores telefónicos (Venezuela):
+            <input type="number" id="bolsa-conectores-tele-ven" min="0" class="form-control" placeholder="Cantidad">
+          </label>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Bolsa conectores telefónicos (USA):
+            <input type="number" id="bolsa-conectores-tele-usa" min="0" class="form-control" placeholder="Cantidad">
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <hr class="my-5">
+    <h2 class="text-center mb-4 display-5">Sección Contratistas</h2>
+    <section id="contratistas-conduit" class="mb-4">
+      <h3>Contratistas de instalación de Conduit</h3>
+      <div class="row g-2 align-items-end">
+        <div class="col-md-6">
+          <label class="form-label">Subcontratista 1 (10$/m):
+            <input type="number" id="conduit-sub1-cantidad" min="0" step="0.01" class="form-control" placeholder="Metros por Sub1">
+          </label>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Subcontratista 2 (7$/m):
+            <input type="number" id="conduit-sub2-cantidad" min="0" step="0.01" class="form-control" placeholder="Metros por Sub2">
+          </label>
+        </div>
+      </div>
+    </section>
+    <section id="contratistas-tabique" class="mb-4">
+      <h3>Contratistas de instalación de Tabique</h3>
+      <div class="row g-2 align-items-end">
+        <div class="col-md-6">
+          <label class="form-label">Subcontratista 3 (15$/unidad):
+            <input type="number" id="tabique-sub3-cantidad" min="0" class="form-control" placeholder="Unidades por Sub3">
+          </label>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Subcontratista 4 (10$/unidad):
+            <input type="number" id="tabique-sub4-cantidad" min="0" class="form-control" placeholder="Unidades por Sub4">
+          </label>
+        </div>
+      </div>
+    </section>
+    <section id="contratistas-cableado" class="mb-4">
+      <h3>Contratistas de Cableado</h3>
+      <div class="row g-2 align-items-end mb-2">
+        <div class="col-md-6">
+          <label class="form-label">Subcontratista 5 (12$/Cable UTP, 7$/Telefónico) instalado en conduit:
+            <input type="number" id="cableado-utp-sub5" min="0" class="form-control" placeholder="Cables UTP por Sub5">
+            <input type="number" id="cableado-telef-sub5" min="0" class="form-control mt-1" placeholder="Cables Telefónicos por Sub5">
+          </label>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Subcontratista 6 (8$/UTP, 10$/Telefónico) instalado en conduit:
+            <input type="number" id="cableado-utp-sub6" min="0" class="form-control" placeholder="Cables UTP por Sub6">
+            <input type="number" id="cableado-telef-sub6" min="0" class="form-control mt-1" placeholder="Cables Telefónicos por Sub6">
+          </label>
+        </div>
+      </div>
+      <div class="row g-2 align-items-end">
+        <div class="col-md-6">
+          <label class="form-label">Subcontratista 5 (3$/UTP, 2$/Telefónico) construido en oficina, cables menores a 100m:
+            <input type="number" id="cableado-utp-ofi-sub5" min="0" class="form-control" placeholder="Cables UTP oficina por Sub5">
+            <input type="number" id="cableado-telef-ofi-sub5" min="0" class="form-control mt-1" placeholder="Cables Telefónicos oficina por Sub5">
+          </label>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Subcontratista 6 (2$/UTP, 3$/Telefónico) construido en oficina, cables menores a 100m:
+            <input type="number" id="cableado-utp-ofi-sub6" min="0" class="form-control" placeholder="Cables UTP oficina por Sub6">
+            <input type="number" id="cableado-telef-ofi-sub6" min="0" class="form-control mt-1" placeholder="Cables Telefónicos oficina por Sub6">
+          </label>
+        </div>
+      </div>
+    </section>
+    <section id="contratistas-drywall" class="mb-4">
+      <h3>Contratistas de Drywall</h3>
+      <div class="row g-2 align-items-end mb-2">
+        <div class="col-md-6">
+          <label class="form-label">Subcontratista 7 (16$/m + 70$/puerta):
+            <input type="number" id="drywall-metros-sub7" min="0" step="0.01" class="form-control" placeholder="Metros por Sub7">
+            <input type="number" id="drywall-puertas-sub7" min="0" class="form-control mt-1" placeholder="Puertas por Sub7">
+          </label>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Subcontratista 8 (25$/m + 50$/puerta):
+            <input type="number" id="drywall-metros-sub8" min="0" step="0.01" class="form-control" placeholder="Metros por Sub8">
+            <input type="number" id="drywall-puertas-sub8" min="0" class="form-control mt-1" placeholder="Puertas por Sub8">
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <button type="button" id="calcular">Calcular</button>
+    <div id="resultado"></div>
+  </form>
+</body>
+</html>
