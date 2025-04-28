@@ -76,16 +76,18 @@ function calculate() {
   const metrosConduit2 = getNumber('conduit-sub2-cantidad');
   totalContratistas += metrosConduit1 * contractorPrices.conduit[0].price;
   totalContratistas += metrosConduit2 * contractorPrices.conduit[1].price;
-  if (metrosConduit1 > 0) diasConduit = Math.ceil(metrosConduit1 / contractorPrices.conduit[0].speed);
-  if (metrosConduit2 > 0) diasConduit += Math.ceil(metrosConduit2 / contractorPrices.conduit[1].speed);
+  let diasConduit1 = 0, diasConduit2 = 0;
+  if (metrosConduit1 > 0) diasConduit1 = Math.ceil(metrosConduit1 / contractorPrices.conduit[0].speed);
+  if (metrosConduit2 > 0) diasConduit2 = Math.ceil(metrosConduit2 / contractorPrices.conduit[1].speed);
 
   // Tabique
   const unidadesTabique3 = getNumber('tabique-sub3-cantidad');
   const unidadesTabique4 = getNumber('tabique-sub4-cantidad');
   totalContratistas += unidadesTabique3 * contractorPrices.tabique[0].price;
   totalContratistas += unidadesTabique4 * contractorPrices.tabique[1].price;
-  if (unidadesTabique3 > 0) diasTabique = Math.ceil(unidadesTabique3 / contractorPrices.tabique[0].speed);
-  if (unidadesTabique4 > 0) diasTabique += Math.ceil(unidadesTabique4 / contractorPrices.tabique[1].speed);
+  let diasTabique3 = 0, diasTabique4 = 0;
+  if (unidadesTabique3 > 0) diasTabique3 = Math.ceil(unidadesTabique3 / contractorPrices.tabique[0].speed);
+  if (unidadesTabique4 > 0) diasTabique4 = Math.ceil(unidadesTabique4 / contractorPrices.tabique[1].speed);
 
   // Cableado
   const utpSub5 = getNumber('cableado-utp-sub5');
@@ -120,7 +122,9 @@ function calculate() {
   if (utpOfiSub6 > 0 || telefOfiSub6 > 0) {
     diasCableadoOfi6 = Math.ceil(utpOfiSub6 / contractorPrices.cableado[1].utpOfiDia) + Math.ceil(telefOfiSub6 / contractorPrices.cableado[1].telefOfiDia);
   }
-  diasCableado = diasCableado5 + diasCableado6 + diasCableadoOfi5 + diasCableadoOfi6;
+  // Total days per cableado contractor
+  let diasCableadoTotal5 = diasCableado5 + diasCableadoOfi5;
+  let diasCableadoTotal6 = diasCableado6 + diasCableadoOfi6;
 
   // Drywall
   const metrosDry7 = getNumber('drywall-metros-sub7');
@@ -129,8 +133,9 @@ function calculate() {
   const puertasDry8 = getNumber('drywall-puertas-sub8');
   totalContratistas += metrosDry7 * contractorPrices.drywall[0].metro + puertasDry7 * contractorPrices.drywall[0].puerta;
   totalContratistas += metrosDry8 * contractorPrices.drywall[1].metro + puertasDry8 * contractorPrices.drywall[1].puerta;
-  if (metrosDry7 > 0) diasDrywall = Math.ceil(metrosDry7 / contractorPrices.drywall[0].speed);
-  if (metrosDry8 > 0) diasDrywall += Math.ceil(metrosDry8 / contractorPrices.drywall[1].speed);
+  let diasDrywall7 = 0, diasDrywall8 = 0;
+  if (metrosDry7 > 0) diasDrywall7 = Math.ceil(metrosDry7 / contractorPrices.drywall[0].speed);
+  if (metrosDry8 > 0) diasDrywall8 = Math.ceil(metrosDry8 / contractorPrices.drywall[1].speed);
 
   const total = totalVen + totalUsa + totalContratistas;
 
@@ -140,10 +145,14 @@ function calculate() {
     <h3>Total Contratistas: $${totalContratistas.toFixed(2)}</h3>
     <h4 class="mt-4">Tiempos estimados de trabajo de los contratistas:</h4>
     <ul>
-      <li>Conduit: ${diasConduit} día(s)</li>
-      <li>Tabique: ${diasTabique} día(s)</li>
-      <li>Cableado: ${diasCableado} día(s)</li>
-      <li>Drywall: ${diasDrywall} día(s)</li>
+      <li>Conduit Sub 1: ${diasConduit1} día(s)</li>
+      <li>Conduit Sub 2: ${diasConduit2} día(s)</li>
+      <li>Tabique Sub 3: ${diasTabique3} día(s)</li>
+      <li>Tabique Sub 4: ${diasTabique4} día(s)</li>
+      <li>Cableado Sub 5: ${diasCableadoTotal5} día(s)</li>
+      <li>Cableado Sub 6: ${diasCableadoTotal6} día(s)</li>
+      <li>Drywall Sub 7: ${diasDrywall7} día(s)</li>
+      <li>Drywall Sub 8: ${diasDrywall8} día(s)</li>
     </ul>
     <h4 class="mt-4">Total:</h4>
     <ul>
